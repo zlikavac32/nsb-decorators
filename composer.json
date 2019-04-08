@@ -1,0 +1,36 @@
+{
+    "name": "zlikavac32/nsb-decorators",
+    "description": "Decorators on the fly",
+    "keywords": [
+        "decorator"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marijan Šuflaj",
+            "email": "msufflaj32@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^7.2",
+        "php-ds/php-ds": "^1.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.0"
+    },
+    "suggest": {
+        "ext-ds": "For native php-ds/php-ds support"
+    },
+    "autoload": {
+        "psr-4": {
+            "Zlikavac32\\NSBDecorators\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Zlikavac32\\NSBDecorators\\Tests\\": "tests/"
+        }
+    }
+}
