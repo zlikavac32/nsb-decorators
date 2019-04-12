@@ -1,6 +1,6 @@
 # Not So Bad Decorators
 
-![Build Status](https://travis-ci.org/zlikavac32/nsb-decorators.svg?branch=master)](https://travis-ci.org/zlikavac32/nsb-decorators)
+[![Build Status](https://travis-ci.org/zlikavac32/nsb-decorators.svg?branch=master)](https://travis-ci.org/zlikavac32/nsb-decorators)
 
 On the fly service decorators.
 
