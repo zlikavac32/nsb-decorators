@@ -317,7 +317,7 @@ PHP;
         if ($parameter->isDefaultValueConstant()) {
             $constantAsString = $parameter->getDefaultValueConstantName();
 
-            if (false === strpos($constantAsString, '::')) {
+            if (self::shouldPrependBackslashToConstantString($constantAsString)) {
                 $constantAsString = '\\' . $constantAsString;
             }
 
@@ -325,6 +325,11 @@ PHP;
         }
 
         return $argumentDeclareAsString . var_export($parameter->getDefaultValue(), true);
+    }
+
+    private static function shouldPrependBackslashToConstantString(string $constantAsString): bool
+    {
+        return substr($constantAsString, 0, 6) !== 'self::';
     }
 
     private static function remapArgumentsPass(ReflectionParameter $parameter): string

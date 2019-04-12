@@ -13,7 +13,9 @@ use Zlikavac32\NSBDecorators\Tests\Fixtures\Command;
 use Zlikavac32\NSBDecorators\Tests\Fixtures\ConcreteCommand;
 use Zlikavac32\NSBDecorators\Tests\Fixtures\ConcreteCommandWithArgumentAsReference;
 use Zlikavac32\NSBDecorators\Tests\Fixtures\ConcreteCommandWithArgumentWithoutTypeHint;
+use Zlikavac32\NSBDecorators\Tests\Fixtures\ConcreteCommandWithDefaultValueAsClassConstant;
 use Zlikavac32\NSBDecorators\Tests\Fixtures\ConcreteCommandWithDefaultValueAsConstant;
+use Zlikavac32\NSBDecorators\Tests\Fixtures\ConcreteCommandWithDefaultValueAsSelfConstant;
 use Zlikavac32\NSBDecorators\Tests\Fixtures\ConcreteCommandWithDefaultValueAsString;
 use Zlikavac32\NSBDecorators\Tests\Fixtures\ConcreteCommandWithMultipleArguments;
 use Zlikavac32\NSBDecorators\Tests\Fixtures\ConcreteCommandWithNullableArgument;
@@ -365,6 +367,80 @@ PHP;
                 'Foo',
                 new ReflectionClass(DecoratorCommand::class),
                 new ReflectionClass(ConcreteCommandWithDefaultValueAsConstant::class),
+                'command'
+            )
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function method_argument_can_have_default_value_as_class_constant(): void
+    {
+        $expectedCode = <<<'PHP'
+namespace  {
+    class Foo extends \Zlikavac32\NSBDecorators\Tests\Fixtures\DecoratorCommand implements \Zlikavac32\NSBDecorators\Tests\Fixtures\CommandWithDefaultValueAsClassConstant
+    {
+        private $command;
+        
+        public function __construct(\Zlikavac32\NSBDecorators\Tests\Fixtures\Command $command)
+        {
+            parent::__construct($command);
+            
+            $this->command = $command;
+        }
+        
+        public function foo(int $const = \Zlikavac32\NSBDecorators\Tests\Fixtures\CommandWithDefaultValueAsClassConstant::FOO_CONSTANT): void
+{
+    $this->command->foo($const);
+}
+    }
+}
+PHP;
+
+        self::assertSame(
+            $expectedCode,
+            Proxy::createClassProxy(
+                'Foo',
+                new ReflectionClass(DecoratorCommand::class),
+                new ReflectionClass(ConcreteCommandWithDefaultValueAsClassConstant::class),
+                'command'
+            )
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function method_argument_can_have_default_value_as_self_constant(): void
+    {
+        $expectedCode = <<<'PHP'
+namespace  {
+    class Foo extends \Zlikavac32\NSBDecorators\Tests\Fixtures\DecoratorCommand implements \Zlikavac32\NSBDecorators\Tests\Fixtures\CommandWithDefaultValueAsSelfConstant
+    {
+        private $command;
+        
+        public function __construct(\Zlikavac32\NSBDecorators\Tests\Fixtures\Command $command)
+        {
+            parent::__construct($command);
+            
+            $this->command = $command;
+        }
+        
+        public function foo(int $const = self::FOO_CONSTANT): void
+{
+    $this->command->foo($const);
+}
+    }
+}
+PHP;
+
+        self::assertSame(
+            $expectedCode,
+            Proxy::createClassProxy(
+                'Foo',
+                new ReflectionClass(DecoratorCommand::class),
+                new ReflectionClass(ConcreteCommandWithDefaultValueAsSelfConstant::class),
                 'command'
             )
         );
