@@ -58,15 +58,6 @@ class DebugCommand implements Command
 But now we have an issue. Because decorator does not necessarily implement all of the interfaces that a concrete command does, we might lose some functionality.
 
 ```php
-
-/**
- * Decorator that uses decorates output in order to use debug output.
- */
-
-
-/**
- * Concrete command implementation that just outputs Foo.
- */
 class FoOCommand implements CommandWithHelp
 {
 
