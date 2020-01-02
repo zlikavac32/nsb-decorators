@@ -12,10 +12,7 @@ require_once __DIR__ . '/common.php';
 class TimedCommand implements Command
 {
 
-    /**
-     * @var Command
-     */
-    private $command;
+    private Command $command;
 
     public function __construct(Command $command)
     {

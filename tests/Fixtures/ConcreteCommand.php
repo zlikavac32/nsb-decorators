@@ -7,10 +7,7 @@ namespace Zlikavac32\NSBDecorators\Tests\Fixtures;
 class ConcreteCommand implements Command
 {
 
-    /**
-     * @var Command
-     */
-    private $command;
+    private Command $command;
 
     public function __construct(Command $command)
     {

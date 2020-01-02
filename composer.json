@@ -14,7 +14,7 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "php": "^7.2",
+        "php": "^7.4",
         "php-ds/php-ds": "^1.2"
     },
     "require-dev": {
