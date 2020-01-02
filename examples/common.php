@@ -20,10 +20,7 @@ interface Output
 class DebugOutput implements Output
 {
 
-    /**
-     * @var Output
-     */
-    private $output;
+    private Output $output;
 
     public function __construct(Output $output)
     {
@@ -62,7 +59,7 @@ interface CommandWithHelp extends Command
 class DebugCommand implements Command
 {
 
-    private $command;
+    private Command $command;
 
     public function __construct(Command $command)
     {
