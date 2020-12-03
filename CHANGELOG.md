@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+* **[FIX]** Argument unpacking with the `php-ds`
 * **[CHANGED]** Typed properties are now used (PHP 7.4 is a minimum version to be used)
 
 ## 0.1.0 (2019-04-12)
