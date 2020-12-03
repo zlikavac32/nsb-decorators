@@ -123,12 +123,14 @@ PHP;
 
         /** @var ReflectionClass[]|Sequence $interfacesToImplement */
         $interfacesToImplement = new Vector(
-            array_udiff(
-                $subject->getInterfaces(),
-                $decorator->getInterfaces(),
-                function (ReflectionClass $first, ReflectionClass $second): int {
-                    return strcmp($first->getName(), $second->getName());
-                }
+            array_values(
+                array_udiff(
+                    $subject->getInterfaces(),
+                    $decorator->getInterfaces(),
+                    function (ReflectionClass $first, ReflectionClass $second): int {
+                        return strcmp($first->getName(), $second->getName());
+                    }
+                )
             )
         );
 
